@@ -154,6 +154,38 @@
             ],
             "techStack":["Java", "Spring", "Hibernate", "Web Services", "MySQL", "Eclipse", "Android", "Blackberry", "Quartz"]
           }
+    ],
+    "personalExperiences": [
+        {
+            "title": "Blockchain Development for PTO Management",
+            "role": "Blockchain Developer",
+            "period": "Jan 2022 - Nov 2022",
+            "details": [
+            "Designed and deployed an ERC-20 smart contract to tokenize PTO balances, enabling seamless tracking and transfer of PTO tokens",
+            "Implemented secure wallet integration for employees to view and manage their PTO balances",
+            "Developed a web interface for administrators to allocate PTO tokens",
+            "Integrated with MetaMask for employee authentication and token interaction"
+            ],
+            "techStack": ["Solidity", "ERC-20", "React.js", "Web3.js", "MetaMask", "Node.js", "Hardhat", "GitHub"]
+        },
+        {
+            "title": "Video Management",
+            "role": "Mobile Developer",
+            "period": "Oct 2015 - Mar 2017",
+            "details": [
+            "Developed and maintained a Hybrid mobile application for video management"
+            ],
+            "techStack": ["Node.js", "Express", "MongoDB", "Cordova", "Ionic", "AngularJS", "Openshift"]
+        },
+        {
+            "title": "Android Stock Control Application - Personal Project",
+            "role": "Mobile Developer",
+            "period": "Jul 2014 - Dec 2014",
+            "details": [
+            "Developed an Android mobile application for stock control"
+            ],
+            "techStack": ["ORMLite", "RoboGuice", "Android-Binding", "MVVM"]
+        }
     ]
   }
   
