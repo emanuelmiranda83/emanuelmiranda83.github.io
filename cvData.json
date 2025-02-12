@@ -1,6 +1,6 @@
 {
     "name": "Emanuel Miranda",
-    "title": "Software Architect | Backend Developer",
+    "title": "Software Architect",
     "avatar": "/profile.png",
     "contact": {
       "email": "emanuelmiranda83@gmail.com",
@@ -14,20 +14,23 @@
             "role": ".NET & Go Developer", 
             "period": "June 2022 - Present", 
             "details": [
-              "Developed and maintained APIs and background jobs in Go",
-              "Maintained microservices and a legacy monolithic application",
-              "Worked with Docker, Redis, SQL, and cloud-based services"
-            ]
+              "Development and maintenance of APIs and background jobs in GoLang.",
+              "Maintenance of a microservice and a legacy monolithic application."
+            ],
+            "techStack": ["GoLang", "Vagrant", "Redis", "PostgreSql", "SQL Server", "Visual Studio 2022", "ASP.NET", "Docker"]
           },
           { 
             "company": "Binagora - Edgecast", 
             "role": ".NET Developer", 
             "period": "Sep 2021 - June 2022", 
             "details": [
-              "Maintained web APIs and developed microservices",
-              "Extracted and modernized monolithic features",
-              "Built IaaS infrastructure using Terraform on AWS"
-            ]
+              "Maintenance of web apis.",
+              "Development and maintenance of a microservice to extract and modernize features from a legacy monolithic application.",
+              "Development, and maintenance of IaaS infrastructure using Terraform.",
+              "Design and development of multiple internal applications to enhance and accelerate development processes, including bots, alert systems, and tools integrated into pipelines to automate tasks previously performed manually.",
+              "Development and management of Docker containers to streamline the deployment and execution of web APIs, background jobs, and integration tests."
+            ],
+            "techStack": ["Visual Studio 2022", "ASP.NET", "Docker", "New Relic", "Entity Framework Core", "Autofac", "FakeItEasy", "PostgreSql", "SQL Server", "Terraform", "AWS", "RestSharp"]
           },
           { 
             "company": "Binagora - Verizon Media", 
