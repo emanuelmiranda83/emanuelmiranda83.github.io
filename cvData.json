@@ -9,11 +9,18 @@
     },
     "summary":"Dedicated and results-driven Software Engineer with over 15 years of experience in software development, specializing in Java and .NET technologies. Passionate about continuous learning and innovation in Computer Science and Information Technology, I have successfully contributed to diverse projects, delivering scalable and high-performance solutions. With a strong background in backend development, cloud computing, and microservices, I excel in designing and implementing robust architectures that enhance efficiency and maintainability.",
     "techSkills": [
-        { "name": "GoLang", "rating": 4 },
-        { "name": "C#/.NET", "rating": 5 },
+      { "name": "C#/.NET", "rating": 5 },  
+      { "name": "GoLang", "rating": 4 },
         { "name": "AWS", "rating": 4 },
         { "name": "Azure", "rating": 4 },
         { "name": "Docker", "rating": 4 }
+    ],
+    "secondarySkills": [
+      "Go", "MySQL", "PostgreSql", "Entity Framework", "Web Services", "ASP.NET MVC",
+      "Solidity", "Hardhat", "Metamask", "ERC-20", "Javascript", "JQuery",
+      "AngularJS", "CSS", "WPF", "Hibernate", "Vagrant", "Unit Testing",
+      "TDD", "New Relic", "RestSharp", "PostgreSQL", "Autofac", "Moq",
+      "Redis", "Oracle DB", "Quartz.NET", "reCaptcha", "Web3.js", "Node.js", "Terraform"
     ],
     "humanSkills": ["Problem Solving", "Empathy", "Team Collaboration", "Effective Communication", "Analytical thinking"],
     "languages": [
