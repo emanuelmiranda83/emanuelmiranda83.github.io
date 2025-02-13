@@ -135,22 +135,38 @@ export default function App() {
     <Container maxWidth="md" sx={{ pt: 4, fontFamily: "'Roboto', sans-serif" }}>
       {/* Profile & Contact Section */}
       <Paper elevation={3} sx={{ p: 4, borderRadius: 2, backgroundColor: "#FAFAFA", borderLeft: "5px solid #0D47A1" }}>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
+        <Box 
+          className="print-header"
+          sx={{ 
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" }, /* Stack on mobile, row on desktop */
+            alignItems: "center",
+            justifyContent: "space-between",
+            textAlign: { xs: "center", md: "right" },
+            width: "100%"
+          }}
+        >
+          
+          {/* Profile Picture - Left */}
+          <Box className="profile-picture" sx={{ flex: "0 0 120px", textAlign: "center", mb: { xs: 2, md: 0 } }}>
             <Avatar 
               src={cvData.avatar} 
               alt={cvData.name}
               sx={{ width: 120, height: 120, boxShadow: 3 }}
             />
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} md={9}>
-            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#0D47A1" }}>{cvData.name}</Typography>
-            <Typography variant="subtitle1" color="textSecondary" sx={{ mb: 2, fontStyle: "italic" }}>
+          {/* Name & Contact - Right on Desktop, Centered on Mobile */}
+          <Box className="profile-info" sx={{ flexGrow: 1, paddingLeft: { md: 3 } }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+              {cvData.name}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary" sx={{ fontStyle: "italic", mb: 1 }}>
               {cvData.title}
             </Typography>
 
-            <Box display="flex" gap={2}>
+            {/* Contact Icons - Inline with Name on Desktop, Centered on Mobile */}
+            <Box className="contact-icons" sx={{ display: "flex", gap: 2, justifyContent: { xs: "center", md: "flex-end" } }}>
               <IconButton component={Link} href={`mailto:${cvData.contact.email}`} target="_blank" rel="noopener">
                 <Email sx={{ fontSize: 28, color: "#0D47A1" }} />
               </IconButton>
@@ -161,9 +177,11 @@ export default function App() {
                 <LinkedIn sx={{ fontSize: 28, color: "#0D47A1" }} />
               </IconButton>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+
+        </Box>
       </Paper>
+
 
       {/* Summary Section (Fixed Card) */}
       <Card sx={{ mt: 3, borderRadius: 2, backgroundColor: "#FFFFFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)" }}>
@@ -181,7 +199,7 @@ export default function App() {
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 SKILLS</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className="skills-container">
             {/* Tech Skills */}
             <Grid item xs={12} md={4}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🛠 TECH</Typography>
@@ -195,7 +213,7 @@ export default function App() {
 
             {/* Human Skills */}
             <Grid item xs={12} md={4}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🤝 Human Skills</Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🤝 HUMAN</Typography>
               {cvData.humanSkills.map((skill, index) => (
                 <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
                   <Typography variant="body2">{skill}</Typography>
@@ -242,7 +260,7 @@ export default function App() {
               </Box>
 
               {/* Tech Stack */}
-              <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+              <Box className="tech-stack" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {exp.techStack.map((tech, i) => (
                   <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
                 ))}
