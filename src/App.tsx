@@ -166,7 +166,7 @@ export default function App() {
             </Typography>
 
             {/* Contact Icons - Inline with Name on Desktop, Centered on Mobile */}
-            <Box className="contact-icons" sx={{ display: "flex", gap: 2, justifyContent: { xs: "center", md: "flex-end" } }}>
+            <Box className="print-hide" sx={{ display: "flex", gap: 2, justifyContent: { xs: "center", md: "flex-end" } }}>
               <IconButton component={Link} href={`mailto:${cvData.contact.email}`} target="_blank" rel="noopener">
                 <Email sx={{ fontSize: 28, color: "#0D47A1" }} />
               </IconButton>
@@ -199,6 +199,9 @@ export default function App() {
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 SKILLS</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+            SKILLS
+          </Typography>
           <Grid container spacing={3} className="skills-container">
             {/* Tech Skills */}
             <Grid item xs={12} md={4}>
@@ -241,6 +244,9 @@ export default function App() {
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>👨‍💻 WORK EXPERIENCE</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+              WORK EXPERIENCE
+          </Typography>
           {cvData.experiences.map((exp, index) => (
             <Box key={index} sx={{ mb: 3 }}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
@@ -276,6 +282,9 @@ export default function App() {
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🌟 PERSONAL EXPERIENCE</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+                PERSONAL EXPERIENCE
+          </Typography>
           {cvData.personalExperiences.map((exp, index) => (
             <Box key={index} sx={{ mb: 3 }}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
@@ -297,7 +306,7 @@ export default function App() {
               )}
 
               {/* Tech Stack */}
-              <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+              <Box className="tech-stack" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {exp.techStack.map((tech, i) => (
                   <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
                 ))}
@@ -313,6 +322,9 @@ export default function App() {
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🎓 EDUCATION</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+                EDUCATION
+          </Typography>
           {cvData.education.map((edu, index) => (
             <Box key={index} sx={{ mb: 2 }}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
@@ -330,7 +342,7 @@ export default function App() {
       </Accordion>
 
       {/* Beliefs Section - Collapsible */}
-      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }} className="print-hide">
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 BELIEFS</Typography>
         </AccordionSummary>
@@ -344,7 +356,7 @@ export default function App() {
       </Accordion>
 
       {/* Hobbies Section - Collapsible */}
-      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }} className="print-hide">
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🎯 HOBBIES</Typography>
         </AccordionSummary>
