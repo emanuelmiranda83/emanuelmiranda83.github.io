@@ -46,6 +46,7 @@ interface CVData {
   contact: Contact;
   summary: string;
   techSkills: Skill[];
+  secondarySkills : string[];
   humanSkills: string[];
   languages: Skill[];
   experiences: Experience[];
@@ -115,6 +116,11 @@ const renderSkillRating = (rating: number) => {
 
 export default function App() {
   const [cvData, setCvData] = useState<CVData | null>(null);
+  const [showMoreSkills, setShowMoreSkills] = useState(false);
+
+  const toggleSkills = () => {
+    setShowMoreSkills(!showMoreSkills);
+  };
 
   useEffect(() => {
     fetch("/cvData.json")
@@ -235,6 +241,14 @@ export default function App() {
               ))}
             </Grid>
           </Grid>
+          
+          <Box sx={{ mt: 3, p: 2, bgcolor: "#F9F9F9", borderRadius: 2 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, justifyContent: "center" }}>
+              {cvData.secondarySkills.map((skill, index) => (
+                <Chip key={index} label={skill} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
+              ))}
+            </Box>
+          </Box>
         </AccordionDetails>
       </Accordion>
 
@@ -266,7 +280,7 @@ export default function App() {
               </Box>
 
               {/* Tech Stack */}
-              <Box className="tech-stack" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+              <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {exp.techStack.map((tech, i) => (
                   <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
                 ))}
@@ -306,7 +320,7 @@ export default function App() {
               )}
 
               {/* Tech Stack */}
-              <Box className="tech-stack" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+              <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {exp.techStack.map((tech, i) => (
                   <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
                 ))}

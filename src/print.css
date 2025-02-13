@@ -1,8 +1,12 @@
 @media print {
-  .print-hide {
+  .print-mode .print-show {
+    display: block !important;
+  }
+
+  .print-mode .print-hide {
     display: none !important;
   }
-  
+
   body {
     font-size: 14px;
     color: #000;
@@ -26,11 +30,6 @@
   .MuiPaper-root {
     background-color: white !important;
     box-shadow: none !important;
-  }
-
-  /* Hide Tech Stack in print mode */
-  .tech-stack {
-    display: none !important;
   }
 
   .skills-container {
