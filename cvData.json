@@ -186,6 +186,29 @@
             ],
             "techStack": ["ORMLite", "RoboGuice", "Android-Binding", "MVVM"]
         }
+    ],
+    "education": [
+        {
+            "institution": "Universidad Nacional del Sur",
+            "period": "2002 - 2013",
+            "degree": "Bachelor in Computer Sciences"
+        },
+        {
+            "institution": "María Susana Institute",
+            "period": "1998 - 2001",
+            "degree": "Humanities and Social Sciences"
+        }
+    ],
+    "beliefs": [
+        "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+        "The only limit to our realization of tomorrow will be our doubts of today.",
+        "The only way to do great work is to love what you do."
+    ],
+    "hobbies": [
+        "Spend time with family and friends",
+        "Investment research",
+        "Blockchain development",
+        "Padel & Football"
     ]
   }
   
