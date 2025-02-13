@@ -1,195 +1,356 @@
-import { Container, Paper, Typography, Grid, Card, CardContent, List, ListItem, ListItemText, Avatar } from "@mui/material";
+import { useEffect, useState } from "react";
+import { 
+  Container, Paper, Typography, Grid, Card, CardContent, Avatar, IconButton, Link, Box, Chip, Accordion, AccordionSummary, AccordionDetails, Button 
+} from "@mui/material";
+import { Email, GitHub, LinkedIn, Square, ExpandMore, Print } from "@mui/icons-material";
+import "./print.css";
 
-const skills = ["Go", "C#/.NET", "AWS", "Azure", "SQL", "Docker", "PostgreSQL", "Redis", "Terraform"];
-const experiences = [
-  { 
-    company: "Binagora - Edgio", 
-    role: ".NET & Go Developer", 
-    period: "June 2022 - Present", 
-    details: [
-      "Developed and maintained APIs and background jobs in Go",
-      "Maintained microservices and a legacy monolithic application",
-      "Worked with Docker, Redis, SQL, and cloud-based services"
-    ]
-  },
-  { 
-    company: "Binagora - Edgecast", 
-    role: ".NET Developer", 
-    period: "Sep 2021 - June 2022", 
-    details: [
-      "Maintained web APIs and developed microservices",
-      "Extracted and modernized monolithic features",
-      "Built IaaS infrastructure using Terraform on AWS"
-    ]
-  },
-  { 
-    company: "Binagora - Verizon Media", 
-    role: ".NET Developer", 
-    period: "Jan 2019 - Sep 2021", 
-    details: [
-      "Developed and maintained web APIs",
-      "Designed and developed microservices",
-      "Implemented automation and performance testing",
-      "Worked with Terraform, AWS, and load testing"
-    ]
-  },
-  { 
-    company: "Binagora - VDMS", 
-    role: ".NET Developer", 
-    period: "Jan 2017 - Jan 2019", 
-    details: [
-      "Developed and maintained web APIs and background jobs",
-      "Worked on multiple features in web APIs and legacy applications",
-      "Designed and developed an automation project for E2E workflow testing"
-    ]
-  },
-  { 
-    company: "Hexacta - Globus", 
-    role: ".NET Developer", 
-    period: "Nov 2015 - Jan 2017", 
-    details: [
-      "Developed and maintained core services and public website",
-      "Worked on back-office web and desktop applications",
-      "Integrated services with Redis and Oracle DB"
-    ]
-  },
-  { 
-    company: "Assertia Solutions - Crackle", 
-    role: ".NET Developer", 
-    period: "Jan 2015 - Nov 2015", 
-    details: [
-      "Developed and maintained a Web API",
-      "Built automation infrastructure for API testing",
-      "Analyzed API performance and developed load testing",
-      "Developed Azure Worker Role for background job processing"
-    ]
-  },
-  { 
-    company: "Globant - Wonga", 
-    role: ".NET Developer", 
-    period: "Feb 2014 - Jan 2015", 
-    details: [
-      "Developed web application for accounting and data management",
-      "Integrated the application with private APIs",
-      "Developed an end-to-end (E2E) test automation project"
-    ]
-  },
-  { 
-    company: "Huddle Group - Internal Tasks", 
-    role: ".NET Developer", 
-    period: "Dec 2013 - Feb 2014", 
-    details: [
-      "Created a Silverlight training course for developers",
-      "Developed SharePoint web parts"
-    ]
-  },
-  { 
-    company: "Huddle Group - PoC WAMS & Transcoding", 
-    role: ".NET Developer", 
-    period: "Oct 2013 - Dec 2013", 
-    details: [
-      "Developed proof of concept for Windows Azure Media Services",
-      "Built a video transcoding and streaming system",
-      "Automated video transcoding analysis"
-    ]
-  },
-  { 
-    company: "Huddle Group - Profertil ProBal", 
-    role: ".NET Developer", 
-    period: "Jan 2013 - Oct 2013", 
-    details: [
-      "Developed a truck and train weighing system",
-      "Built a desktop application for weighing station control",
-      "Developed drivers in C# for weighing scale communication",
-      "Created a web-based management system"
-    ]
-  },
-  { 
-    company: "Huddle Group - CAA Tours Management", 
-    role: ".NET Developer", 
-    period: "Jul 2012 - Jan 2013", 
-    details: [
-      "Developed a system for managing tours and shows",
-      "Integrated maps using Bing Maps"
-    ]
-  },
-  { 
-    company: "Comper Argentina", 
-    role: "Java Developer", 
-    period: "Sep 2009 - Jul 2012", 
-    details: [
-      "Developed and maintained a web application for virtual sales",
-      "Integrated web services with telecom providers",
-      "Developed mobile applications for wholesalers and salesmen"
-    ]
-  }
-];
+// Define TypeScript interfaces
+interface Education {
+  institution: string;
+  period: string;
+  degree: string;
+}
+
+interface Contact {
+  email: string;
+  github: string;
+  linkedin: string;
+}
+
+interface Skill {
+  name: string;
+  rating?: number;
+}
+
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  details: string[];
+  techStack: string[];
+}
+
+interface PersonalExperience {
+  title: string;
+  role: string;
+  period: string;
+  details: string[];
+  techStack: string[];
+}
+
+interface CVData {
+  name: string;
+  title: string;
+  avatar: string;
+  contact: Contact;
+  summary: string;
+  techSkills: Skill[];
+  humanSkills: string[];
+  languages: Skill[];
+  experiences: Experience[];
+  personalExperiences: PersonalExperience[];
+  education: Education[];
+  beliefs: string[];
+  hobbies: string[];
+}
+
+const handlePrint = () => {
+  // Add a special class to force visibility in print mode
+  document.body.classList.add("print-mode");
+
+  // Expand all accordion sections and force visibility
+  const accordions = document.querySelectorAll(".MuiAccordion-root");
+  accordions.forEach((accordion) => {
+    const details = accordion.querySelector(".MuiCollapse-root");
+    const content = accordion.querySelector(".MuiAccordionDetails-root");
+
+    if (details) {
+      (details as HTMLElement).style.height = "auto";
+      (details as HTMLElement).style.overflow = "visible";
+      (details as HTMLElement).style.display = "block"; // Ensure visibility
+    }
+
+    if (content) {
+      (content as HTMLElement).style.display = "block"; // Force rendering
+    }
+  });
+
+  // Wait a moment to allow UI to update, then trigger print
+  setTimeout(() => {
+    window.print();
+
+    // Remove the special class and restore original state after printing
+    setTimeout(() => {
+      document.body.classList.remove("print-mode");
+      accordions.forEach((accordion) => {
+        const details = accordion.querySelector(".MuiCollapse-root");
+        const content = accordion.querySelector(".MuiAccordionDetails-root");
+
+        if (details) {
+          (details as HTMLElement).style.height = "";
+          (details as HTMLElement).style.overflow = "";
+          (details as HTMLElement).style.display = "";
+        }
+
+        if (content) {
+          (content as HTMLElement).style.display = "";
+        }
+      });
+    }, 500);
+  }, 500);
+};
+
+// Function to render skill rating as squares
+const renderSkillRating = (rating: number) => {
+  const totalSquares = 5;
+  return (
+    <Box display="flex" alignItems="center">
+      {[...Array(totalSquares)].map((_, index) => (
+        <Square key={index} sx={{ color: index < rating ? "#0D47A1" : "#B0BEC5", fontSize: 16, mr: 0.5 }} />
+      ))}
+    </Box>
+  );
+};
 
 export default function App() {
+  const [cvData, setCvData] = useState<CVData | null>(null);
+
+  useEffect(() => {
+    fetch("/cvData.json")
+      .then((response) => response.json())
+      .then((data: CVData) => setCvData(data))
+      .catch((error) => console.error("Error loading CV data:", error));
+  }, []);
+
+  if (!cvData) {
+    return (
+      <Container maxWidth="md" sx={{ pt: 4, textAlign: "center" }}>
+        <Typography variant="h5">Loading CV Data...</Typography>
+      </Container>
+    );
+  }
+
   return (
-    <Container maxWidth="md" style={{ paddingTop: "20px" }}>
-      <Paper elevation={3} style={{ padding: "20px", textAlign: "center" }}>
-        <Avatar 
-          src="/profile.png" 
-          alt="Emanuel Miranda"
-          sx={{ width: 150, height: 150, margin: "auto", boxShadow: 3 }}
-        />
-        <Typography variant="h5" style={{ marginTop: "10px" }}>
-          Emanuel Miranda
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          Software Architect
-        </Typography>
+    <Container maxWidth="md" sx={{ pt: 4, fontFamily: "'Roboto', sans-serif" }}>
+      {/* Profile & Contact Section */}
+      <Paper elevation={3} sx={{ p: 4, borderRadius: 2, backgroundColor: "#FAFAFA", borderLeft: "5px solid #0D47A1" }}>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={12} md={3} sx={{ textAlign: "center" }}>
+            <Avatar 
+              src={cvData.avatar} 
+              alt={cvData.name}
+              sx={{ width: 120, height: 120, boxShadow: 3 }}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={9}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#0D47A1" }}>{cvData.name}</Typography>
+            <Typography variant="subtitle1" color="textSecondary" sx={{ mb: 2, fontStyle: "italic" }}>
+              {cvData.title}
+            </Typography>
+
+            <Box display="flex" gap={2}>
+              <IconButton component={Link} href={`mailto:${cvData.contact.email}`} target="_blank" rel="noopener">
+                <Email sx={{ fontSize: 28, color: "#0D47A1" }} />
+              </IconButton>
+              <IconButton component={Link} href={cvData.contact.github} target="_blank" rel="noopener">
+                <GitHub sx={{ fontSize: 28, color: "#0D47A1" }} />
+              </IconButton>
+              <IconButton component={Link} href={cvData.contact.linkedin} target="_blank" rel="noopener">
+                <LinkedIn sx={{ fontSize: 28, color: "#0D47A1" }} />
+              </IconButton>
+            </Box>
+          </Grid>
+        </Grid>
       </Paper>
 
-      <Grid container spacing={3} style={{ marginTop: "20px" }}>
-        {/* Left Column */}
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">📞 Contact</Typography>
-              <Typography variant="body2">Email: emanuelmiranda83@gmail.com</Typography>
-              <Typography variant="body2">GitHub: github.com/emanuelmiranda83</Typography>
-              <Typography variant="body2">LinkedIn: linkedin.com/in/emiranda</Typography>
-            </CardContent>
-          </Card>
+      {/* Summary Section (Fixed Card) */}
+      <Card sx={{ mt: 3, borderRadius: 2, backgroundColor: "#FFFFFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)" }}>
+        <CardContent>
+          {/* <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1", mb: 1 }}>🔍 SUMMARY</Typography> */}
+          <Typography variant="body1" color="textSecondary" sx={{ lineHeight: 1.6 }}>
+            {cvData.summary}
+          </Typography>
+        </CardContent>
+      </Card>
 
-          <Card style={{ marginTop: "20px" }}>
-            <CardContent>
-              <Typography variant="h6">🔧 Skills</Typography>
-              <List>
-                {skills.map((skill, index) => (
-                  <ListItem key={index}>
-                    <ListItemText primary={skill} />
-                  </ListItem>
-                ))}
-              </List>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Right Column */}
-        <Grid item xs={12} md={8}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">👨‍💻 Work Experience</Typography>
-              {experiences.map((exp, index) => (
-                <div key={index} style={{ marginBottom: "10px" }}>
-                  <Typography variant="subtitle1"><strong>{exp.company}</strong> ({exp.period})</Typography>
-                  <Typography variant="body2" color="textSecondary">{exp.role}</Typography>
-                  <List dense>
-                    {exp.details.map((detail, i) => (
-                      <ListItem key={i}>
-                        <ListItemText primary={detail} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
+      {/* Skills Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 SKILLS</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Grid container spacing={3}>
+            {/* Tech Skills */}
+            <Grid item xs={12} md={4}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🛠 TECH</Typography>
+              {cvData.techSkills.map((skill, index) => (
+                <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+                  <Typography variant="body2">{skill.name}</Typography>
+                  {renderSkillRating(skill.rating ?? 1)}
+                </Box>
               ))}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+            </Grid>
+
+            {/* Human Skills */}
+            <Grid item xs={12} md={4}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🤝 Human Skills</Typography>
+              {cvData.humanSkills.map((skill, index) => (
+                <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+                  <Typography variant="body2">{skill}</Typography>
+                </Box>
+              ))}
+            </Grid>
+
+            {/* Languages */}
+            <Grid item xs={12} md={4}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🌍 LANGUAGES</Typography>
+              {cvData.languages.map((language, index) => (
+                <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+                  <Typography variant="body2">{language.name}</Typography>
+                  {renderSkillRating(language.rating ?? 1)}
+                </Box>
+              ))}
+            </Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Work Experience Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>👨‍💻 WORK EXPERIENCE</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {cvData.experiences.map((exp, index) => (
+            <Box key={index} sx={{ mb: 3 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+                {exp.company}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: "bold", color: "#424242" }}>
+                {exp.role} • {exp.period}
+              </Typography>
+
+              {/* Modern List Style - No Bullets */}
+              <Box sx={{ mt: 1 }}>
+                {exp.details.map((detail, i) => (
+                  <Typography key={i} variant="body2" sx={{ color: "#555", pl: 1, mb: 0.5 }}>
+                    — {detail}
+                  </Typography>
+                ))}
+              </Box>
+
+              {/* Tech Stack */}
+              <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+                {exp.techStack.map((tech, i) => (
+                  <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
+                ))}
+              </Box>
+            </Box>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Personal Experience Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🌟 PERSONAL EXPERIENCE</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {cvData.personalExperiences.map((exp, index) => (
+            <Box key={index} sx={{ mb: 3 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+                {exp.title}
+              </Typography>
+              <Typography variant="subtitle2" sx={{ fontWeight: "bold", color: "#424242" }}>
+                {exp.role} • {exp.period}
+              </Typography>
+
+              {/* Modern List Style - No Bullets */}
+              {exp.details.length > 0 && (
+                <Box sx={{ mt: 1 }}>
+                  {exp.details.map((detail, i) => (
+                    <Typography key={i} variant="body2" sx={{ color: "#555", pl: 1, mb: 0.5 }}>
+                      — {detail}
+                    </Typography>
+                  ))}
+                </Box>
+              )}
+
+              {/* Tech Stack */}
+              <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+                {exp.techStack.map((tech, i) => (
+                  <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
+                ))}
+              </Box>
+            </Box>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Education Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🎓 EDUCATION</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {cvData.education.map((edu, index) => (
+            <Box key={index} sx={{ mb: 2 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+                {edu.institution}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: "bold", color: "#424242" }}>
+                {edu.degree}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {edu.period}
+              </Typography>
+            </Box>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Beliefs Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 BELIEFS</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {cvData.beliefs.map((belief, index) => (
+            <Typography key={index} variant="body2" sx={{ mb: 1, fontStyle: "italic", color: "#555" }}>
+              “{belief}”
+            </Typography>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Hobbies Section - Collapsible */}
+      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🎯 HOBBIES</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {cvData.hobbies.map((hobby, index) => (
+            <Typography key={index} variant="body2" sx={{ mb: 1, color: "#555" }}>
+              — {hobby}
+            </Typography>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+
+      {/* Print as PDF Button */}
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4, mb: 4 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<Print />}
+          onClick={handlePrint}
+          sx={{ backgroundColor: "#0D47A1", fontWeight: "bold", textTransform: "none" }}
+        >
+          Print as PDF
+        </Button>
+      </Box>
     </Container>
   );
 }

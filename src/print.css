@@ -1,0 +1,26 @@
+@media print {
+  body {
+    font-size: 14px;
+    color: #000;
+  }
+
+  /* Hide interactive elements */
+  button, .MuiAccordionSummary-expandIcon {
+    display: none !important;
+  }
+
+  /* Force visibility of all accordion content */
+  .print-mode .MuiCollapse-root,
+  .print-mode .MuiAccordionDetails-root {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    visibility: visible !important;
+  }
+
+  /* Remove shadows and backgrounds for clean print layout */
+  .MuiPaper-root {
+    background-color: white !important;
+    box-shadow: none !important;
+  }
+}

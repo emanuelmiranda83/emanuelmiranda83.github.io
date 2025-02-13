@@ -1,0 +1,214 @@
+{
+    "name": "Emanuel Miranda",
+    "title": "Software Architect",
+    "avatar": "/profile.png",
+    "contact": {
+      "email": "emanuelmiranda83@gmail.com",
+      "github": "https://github.com/emanuelmiranda83",
+      "linkedin": "https://www.linkedin.com/in/emanuel-miranda-68957b16/"
+    },
+    "summary":"Dedicated and results-driven Software Engineer with over 15 years of experience in software development, specializing in Java and .NET technologies. Passionate about continuous learning and innovation in Computer Science and Information Technology, I have successfully contributed to diverse projects, delivering scalable and high-performance solutions. With a strong background in backend development, cloud computing, and microservices, I excel in designing and implementing robust architectures that enhance efficiency and maintainability.",
+    "techSkills": [
+        { "name": "GoLang", "rating": 4 },
+        { "name": "C#/.NET", "rating": 5 },
+        { "name": "AWS", "rating": 4 },
+        { "name": "Azure", "rating": 4 },
+        { "name": "Docker", "rating": 4 }
+    ],
+    "humanSkills": ["Problem Solving", "Empathy", "Team Collaboration", "Effective Communication", "Analytical thinking"],
+    "languages": [
+        { "name": "English", "rating": 3 },
+        { "name": "Spanish", "rating": 5 }
+    ],
+    "experiences": [
+        { 
+            "company": "Binagora - Edgio", 
+            "role": ".NET & Go Developer", 
+            "period": "June 2022 - Present", 
+            "details": [
+              "Development and maintenance of APIs and background jobs in GoLang.",
+              "Maintenance of a microservice and a legacy monolithic application."
+            ],
+            "techStack": ["GoLang", "Vagrant", "Redis", "PostgreSql", "SQL Server", "Visual Studio 2022", "ASP.NET", "Docker"]
+          },
+          { 
+            "company": "Binagora - Edgecast", 
+            "role": ".NET Developer", 
+            "period": "Sep 2021 - June 2022", 
+            "details": [
+              "Maintenance of web apis.",
+              "Development and maintenance of a microservice to extract and modernize features from a legacy monolithic application.",
+              "Development, and maintenance of IaaS infrastructure using Terraform.",
+              "Design and development of multiple internal applications to enhance and accelerate development processes, including bots, alert systems, and tools integrated into pipelines to automate tasks previously performed manually.",
+              "Development and management of Docker containers to streamline the deployment and execution of web APIs, background jobs, and integration tests."
+            ],
+            "techStack": ["Visual Studio 2022", "ASP.NET", "Docker", "New Relic", "Entity Framework Core", "Autofac", "FakeItEasy", "PostgreSql", "SQL Server", "Terraform", "AWS", "RestSharp"]
+          },
+          { 
+            "company": "Binagora - Verizon Media", 
+            "role": ".NET Developer", 
+            "period": "Jan 2019 - Sep 2021", 
+            "details": [
+              "Development and maintenance of web apis.",
+              "Design, development and maintenance of a microservice to extract and modernize features from a legacy monolithic application.",
+              "Design, development, and maintenance of IaaS infrastructure using Terraform.",
+              "Support for the building of an automation project to test the API.",
+              "Development of a Load tests project using artillery.io for a web api."
+            ],
+            "techStack":["Visual Studio", "ASP.NET", "New Relic", "Entity Framework Core", "Autofac", "FakeItEasy", "PostgreSql", "SQL Server", "Terraform", "AWS", "RestSharp", "Artillery", "Simple.Data", "Docker"]
+          },
+          { 
+            "company": "Binagora - VDMS", 
+            "role": ".NET Developer", 
+            "period": "Jan 2017 - Jan 2019", 
+            "details": [
+              "Development and maintenance of web apis.",
+              "Development and maintenance of multiple features of web apis, background jobs and a legacy monolithic application.",
+              "Design and development of an automation project to test some E2E workflows including interaction with API and background jobs."
+            ],
+            "techStack":["Visual Studio", "ASP.NET", "FakeItEasy", "SQL Server", "RestSharp"]
+          },
+          { 
+            "company": "Hexacta - Globus", 
+            "role": ".NET Developer", 
+            "period": "Nov 2015 - Jan 2017", 
+            "details": [
+              "Development and maintenance of core services and public website.",
+              "Development and maintenance of back-office applications, including web and desktop applications."
+            ],
+            "techStack":["ASP.NET", "WCF", "Moq", "Redis", "Oracle DB", "IIS", "jQuery"]
+          },
+          { 
+            "company": "Assertia Solutions - Crackle", 
+            "role": ".NET Developer", 
+            "period": "Jan 2015 - Nov 2015", 
+            "details": [
+              "Development and maintenance of a Web Api.",
+              "Development of the core infrastructure and code framework for building an automation project to test the API.",
+              "Performance analysis of the API, including the development of a load testing project.",
+              "Development and maintenance of an Azure Worker Role to handle asynchronous operations required by the project, such as email sending and background jobs."
+            ],
+            "techStack":["ASP.NET", "New Relic","Loggly", "Entity Framework", "Azure", "Ninject", "Redis", "Simple.Data", "RestSharp", "TFS CI", "Moq", "Quartz.net", "Google reCaptcha", "AWS SES"]
+          },
+          { 
+            "company": "Globant - Wonga", 
+            "role": ".NET Developer", 
+            "period": "Feb 2014 - Jan 2015", 
+            "details": [
+              "Development of a web application for managing the company's accounting records and statistical data, with integration to communicate with a private API.",
+              "Development of an automation project to perform end-to-end (E2E) tests for the web application."
+            ],
+            "techStack":["ASP.NET", "Javascript", "jQuery", "NHibernate", "Autofac", "NUnit", "Moq", "Fluent Assertions", "Action Mailer", "Jenkins CI", "Log4net", "Selenium", "Simple.Data"]
+          },
+          { 
+            "company": "Huddle Group - Internal Tasks", 
+            "role": ".NET Developer", 
+            "period": "Dec 2013 - Feb 2014", 
+            "details": [
+              "Creation of a course for Silverlight for developer training.",
+              "Sharepoint web parts development."
+            ],
+            "techStack":["Silverlight", "Javascript", "Sharepoint", "jQuery", "WebForms"]
+          },
+          { 
+            "company": "Huddle Group - PoC WAMS & Transcoding", 
+            "role": ".NET Developer", 
+            "period": "Oct 2013 - Dec 2013", 
+            "details": [
+              "WAMS Showcase - Proof of concept of the WAMS functionalities.",
+              "Proof of concept of Windows Azure Media Services.",
+              "Development of video transcoding and streaming system.",
+              "Automation of video transcoding analysis."
+            ],
+            "techStack":["ASP.NET", "SQL Server", "Entity Framework", "WAMS", "Azure Worker Role", "Azure Web Role", "Azure Tables", "Azure Queues", "Azure Blobs", "AngularJS", "Ffmpeg", "Ffprobe", "Fluent Assertions", "Moq", "AWS SDK", "Action Mailer"]
+          },
+          { 
+            "company": "Huddle Group - Profertil ProBal", 
+            "role": ".NET Developer", 
+            "period": "Jan 2013 - Oct 2013", 
+            "details": [
+              "Development of a system to weigh trucks and trains.",
+              "Control station of weighing scales desktop application.",
+              "Driver development in C# for communication with weighing scale.",
+              "Development of a web management application."
+            ],
+            "techStack":["Javascript", "jQuery", "HTML", "CSS", "WPF", "SQL Server", "Entity Framework", "MVVM", "ASP.NET MVC", "ASP.NET Web API", "Quartz.net", "RhinoMocks", "Fluent Assertions", "Log4net"]
+          },
+          { 
+            "company": "Huddle Group - CAA Tours Management", 
+            "role": ".NET Developer", 
+            "period": "Jul 2012 - Jan 2013", 
+            "details": [
+              "Development of a system for tours/shows management."
+            ],
+            "techStack":["ASP.NET", "Javascript", "jQuery", "HTML", "CSS", "Responsive Design", "Bing Maps", "SQL Server"]
+          },
+          { 
+            "company": "Comper Argentina", 
+            "role": "Java Developer", 
+            "period": "Sep 2009 - Jul 2012", 
+            "details": [
+              "Development and maintenance of Web application for sales of virtual charges and prepaid services.",
+              "Communication via web services with telephone service providers.",
+              "Development and maintenance of mobile application for wholesalers and salesmen."
+            ],
+            "techStack":["Java", "Spring", "Hibernate", "Web Services", "MySQL", "Eclipse", "Android", "Blackberry", "Quartz"]
+          }
+    ],
+    "personalExperiences": [
+        {
+            "title": "Blockchain Development for PTO Management",
+            "role": "Blockchain Developer",
+            "period": "Jan 2022 - Nov 2022",
+            "details": [
+            "Designed and deployed an ERC-20 smart contract to tokenize PTO balances, enabling seamless tracking and transfer of PTO tokens",
+            "Implemented secure wallet integration for employees to view and manage their PTO balances",
+            "Developed a web interface for administrators to allocate PTO tokens",
+            "Integrated with MetaMask for employee authentication and token interaction"
+            ],
+            "techStack": ["Solidity", "ERC-20", "React.js", "Web3.js", "MetaMask", "Node.js", "Hardhat", "GitHub"]
+        },
+        {
+            "title": "Video Management",
+            "role": "Mobile Developer",
+            "period": "Oct 2015 - Mar 2017",
+            "details": [
+            "Developed and maintained a Hybrid mobile application for video management"
+            ],
+            "techStack": ["Node.js", "Express", "MongoDB", "Cordova", "Ionic", "AngularJS", "Openshift"]
+        },
+        {
+            "title": "Android Stock Control Application - Personal Project",
+            "role": "Mobile Developer",
+            "period": "Jul 2014 - Dec 2014",
+            "details": [
+            "Developed an Android mobile application for stock control"
+            ],
+            "techStack": ["ORMLite", "RoboGuice", "Android-Binding", "MVVM"]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Universidad Nacional del Sur",
+            "period": "2002 - 2013",
+            "degree": "Bachelor in Computer Sciences"
+        },
+        {
+            "institution": "María Susana Institute",
+            "period": "1998 - 2001",
+            "degree": "Humanities and Social Sciences"
+        }
+    ],
+    "beliefs": [
+        "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+        "The only limit to our realization of tomorrow will be our doubts of today.",
+        "The only way to do great work is to love what you do."
+    ],
+    "hobbies": [
+        "Spend time with family and friends",
+        "Investment research",
+        "Blockchain development",
+        "Padel & Football"
+    ]
+  }
+  
