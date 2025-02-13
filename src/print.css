@@ -12,6 +12,20 @@
     color: #000;
   }
 
+  .print-mode .MuiAccordion-root {
+    margin-top: 1px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .print-mode .MuiBox-root {
+    margin-top: 1px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .print-mode .MuiTypography-root {
+    margin-bottom: 1px !important;
+  }
+
   /* Hide interactive elements */
   button, .MuiAccordionSummary-expandIcon {
     display: none !important;
@@ -76,5 +90,15 @@
     margin-top: 20px !important;
     border-bottom: 2px solid #0D47A1 !important;
     padding-bottom: 5px !important;
+  }
+
+  /* 🆕 Force Work Experience to start on a new page */
+  .print-mode .page-break-work {
+    page-break-before: always !important;
+  }
+
+  /* 🆕 Force Personal Experience to start on a new page */
+  .print-mode .page-break-personal {
+    page-break-before: always !important;
   }
 }

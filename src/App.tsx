@@ -187,7 +187,6 @@ export default function App() {
       {/* Summary Section (Fixed Card) */}
       <Card sx={{ mt: 3, borderRadius: 2, backgroundColor: "#FFFFFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)" }}>
         <CardContent>
-          {/* <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1", mb: 1 }}>🔍 SUMMARY</Typography> */}
           <Typography variant="body1" color="textSecondary" sx={{ lineHeight: 1.6 }}>
             {cvData.summary}
           </Typography>
@@ -248,63 +247,25 @@ export default function App() {
       </Accordion>
 
       {/* Work Experience Section - Collapsible */}
-      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>👨‍💻 WORK EXPERIENCE</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
-              WORK EXPERIENCE
-          </Typography>
-          {cvData.experiences.map((exp, index) => (
-            <Box key={index} sx={{ mb: 3 }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
-                {exp.company}
-              </Typography>
-              <Typography variant="body2" sx={{ fontWeight: "bold", color: "#424242" }}>
-                {exp.role} • {exp.period}
-              </Typography>
+      <Box className="print-mode page-break-work">
+        <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>👨‍💻 WORK EXPERIENCE</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+                WORK EXPERIENCE
+            </Typography>
+            {cvData.experiences.map((exp, index) => (
+              <Box key={index} sx={{ mb: 3 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+                  {exp.company}
+                </Typography>
+                <Typography variant="body2" sx={{ fontWeight: "bold", color: "#424242" }}>
+                  {exp.role} • {exp.period}
+                </Typography>
 
-              {/* Modern List Style - No Bullets */}
-              <Box sx={{ mt: 1 }}>
-                {exp.details.map((detail, i) => (
-                  <Typography key={i} variant="body2" sx={{ color: "#555", pl: 1, mb: 0.5 }}>
-                    — {detail}
-                  </Typography>
-                ))}
-              </Box>
-
-              {/* Tech Stack */}
-              <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
-                {exp.techStack.map((tech, i) => (
-                  <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
-                ))}
-              </Box>
-            </Box>
-          ))}
-        </AccordionDetails>
-      </Accordion>
-
-      {/* Personal Experience Section - Collapsible */}
-      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🌟 PERSONAL EXPERIENCE</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
-                PERSONAL EXPERIENCE
-          </Typography>
-          {cvData.personalExperiences.map((exp, index) => (
-            <Box key={index} sx={{ mb: 3 }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
-                {exp.title}
-              </Typography>
-              <Typography variant="subtitle2" sx={{ fontWeight: "bold", color: "#424242" }}>
-                {exp.role} • {exp.period}
-              </Typography>
-
-              {/* Modern List Style - No Bullets */}
-              {exp.details.length > 0 && (
+                {/* Modern List Style - No Bullets */}
                 <Box sx={{ mt: 1 }}>
                   {exp.details.map((detail, i) => (
                     <Typography key={i} variant="body2" sx={{ color: "#555", pl: 1, mb: 0.5 }}>
@@ -312,18 +273,60 @@ export default function App() {
                     </Typography>
                   ))}
                 </Box>
-              )}
 
-              {/* Tech Stack */}
-              <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
-                {exp.techStack.map((tech, i) => (
-                  <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
-                ))}
+                {/* Tech Stack */}
+                <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+                  {exp.techStack.map((tech, i) => (
+                    <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
+                  ))}
+                </Box>
               </Box>
-            </Box>
-          ))}
-        </AccordionDetails>
-      </Accordion>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+      
+      {/* Personal Experience Section - Collapsible */}
+      <Box className="print-mode page-break-personal">
+        <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>🌟 PERSONAL EXPERIENCE</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+                  PERSONAL EXPERIENCE
+            </Typography>
+            {cvData.personalExperiences.map((exp, index) => (
+              <Box key={index} sx={{ mb: 3 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#0D47A1" }}>
+                  {exp.title}
+                </Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "bold", color: "#424242" }}>
+                  {exp.role} • {exp.period}
+                </Typography>
+
+                {/* Modern List Style - No Bullets */}
+                {exp.details.length > 0 && (
+                  <Box sx={{ mt: 1 }}>
+                    {exp.details.map((detail, i) => (
+                      <Typography key={i} variant="body2" sx={{ color: "#555", pl: 1, mb: 0.5 }}>
+                        — {detail}
+                      </Typography>
+                    ))}
+                  </Box>
+                )}
+
+                {/* Tech Stack */}
+                <Box className="print-hide" sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
+                  {exp.techStack.map((tech, i) => (
+                    <Chip key={i} label={tech} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
+                  ))}
+                </Box>
+              </Box>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+      </Box>
 
       {/* Education Section - Collapsible */}
       <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
