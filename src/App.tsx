@@ -116,12 +116,7 @@ const renderSkillRating = (rating: number) => {
 
 export default function App() {
   const [cvData, setCvData] = useState<CVData | null>(null);
-  const [showMoreSkills, setShowMoreSkills] = useState(false);
-
-  const toggleSkills = () => {
-    setShowMoreSkills(!showMoreSkills);
-  };
-
+  
   useEffect(() => {
     fetch("/cvData.json")
       .then((response) => response.json())
