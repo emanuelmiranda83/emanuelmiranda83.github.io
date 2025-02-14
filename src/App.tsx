@@ -46,7 +46,7 @@ interface CVData {
   contact: Contact;
   summary: string;
   techSkills: Skill[];
-  secondarySkills : string[];
+  secondarySkills: Record<string, string[]>;
   humanSkills: string[];
   languages: Skill[];
   experiences: Experience[];
@@ -55,6 +55,19 @@ interface CVData {
   beliefs: string[];
   hobbies: string[];
 }
+
+// Define colors for each category
+const categoryColors: Record<string, string> = {
+  Languages: "#0D47A1", // Blue
+  "Frameworks & Libraries": "#4CAF50", // Green
+  Databases: "#FF9800", // Orange
+  "Blockchain & Smart Contracts": "#9C27B0", // Purple
+  "Infrastructure & DevOps": "#795548", // Brown
+  "Testing & QA": "#F44336", // Red
+  Concepts: "#03A9F4", // Light Blue
+  "Security & Authentication": "#607D8B", // Gray-Blue
+  "Tools & Monitoring": "#8BC34A" // Light Green
+};
 
 const handlePrint = () => {
   // Add a special class to force visibility in print mode
@@ -102,13 +115,21 @@ const handlePrint = () => {
   }, 500);
 };
 
-// Function to render skill rating as squares
+const ratingGradient = ["#E3F2FD", "#90CAF9", "#42A5F5", "#1E88E5", "#0D47A1"];
+
+// Function to render skill rating as squares with fixed gradient
 const renderSkillRating = (rating: number) => {
-  const totalSquares = 5;
   return (
     <Box display="flex" alignItems="center">
-      {[...Array(totalSquares)].map((_, index) => (
-        <Square key={index} sx={{ color: index < rating ? "#0D47A1" : "#B0BEC5", fontSize: 16, mr: 0.5 }} />
+      {[...Array(5)].map((_, index) => (
+        <Square 
+          key={index} 
+          sx={{ 
+            color: index < rating ? ratingGradient[index] : "#B0BEC5", // Apply fixed gradient
+            fontSize: 16, 
+            mr: 0.5 
+          }} 
+        />
       ))}
     </Box>
   );
@@ -185,7 +206,7 @@ export default function App() {
 
 
       {/* Summary Section (Fixed Card) */}
-      <Card sx={{ mt: 3, borderRadius: 2, backgroundColor: "#FFFFFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)" }}>
+      <Card sx={{ mt: 1, borderRadius: 2, backgroundColor: "#FFFFFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)" }}>
         <CardContent>
           <Typography variant="body1" color="textSecondary" sx={{ lineHeight: 1.6 }}>
             {cvData.summary}
@@ -194,15 +215,15 @@ export default function App() {
       </Card>
 
       {/* Skills Section - Collapsible */}
-      <Accordion sx={{ mt: 3, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
+      <Accordion sx={{ mt: 1, borderRadius: 2, backgroundColor: "#F9F9F9" }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#0D47A1" }}>💡 SKILLS</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="h6" className="print-section-title" sx={{ display: { xs: "none", print: "block" } }}>
+          <Typography variant="h6" className="print-section-title" sx={{ display: { mt: 0, xs: "none", print: "block" } }}>
             SKILLS
           </Typography>
-          <Grid container spacing={3} className="skills-container">
+          <Grid container spacing={3} className="skills-container" justifyContent="center" sx={{ mt: 0, textAlign: "center" }}>
             {/* Tech Skills */}
             <Grid item xs={12} md={4}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🛠 TECH</Typography>
@@ -215,7 +236,7 @@ export default function App() {
             </Grid>
 
             {/* Human Skills */}
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>🤝 HUMAN</Typography>
               {cvData.humanSkills.map((skill, index) => (
                 <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
@@ -236,13 +257,26 @@ export default function App() {
             </Grid>
           </Grid>
           
-          <Box sx={{ mt: 3, p: 2, bgcolor: "#F9F9F9", borderRadius: 2 }}>
+          <Box sx={{ p: 2, borderRadius: 2 }}>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, justifyContent: "center" }}>
-              {cvData.secondarySkills.map((skill, index) => (
-                <Chip key={index} label={skill} variant="outlined" sx={{ fontWeight: "bold", color: "#0D47A1", borderColor: "#0D47A1" }} />
-              ))}
+              {Object.entries(cvData.secondarySkills).flatMap(([category, skills]) =>
+                skills.map((skill, index) => (
+                  <Chip
+                  key={`${category}-${index}`}
+                    label={skill}
+                    variant="outlined"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#FFFFFF",
+                      backgroundColor: categoryColors[category],
+                      borderColor: categoryColors[category]
+                    }}
+                  />
+                ))
+              )}
             </Box>
           </Box>
+          
         </AccordionDetails>
       </Accordion>
 
