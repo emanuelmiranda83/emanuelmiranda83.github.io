@@ -264,7 +264,8 @@ export default function App() {
                   <Chip
                   key={`${category}-${index}`}
                     label={skill}
-                    variant="outlined"
+                    variant="filled"
+                    className="skill-chip print-mode"
                     sx={{
                       fontWeight: "bold",
                       color: "#FFFFFF",

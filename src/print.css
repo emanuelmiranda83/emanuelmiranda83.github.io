@@ -101,4 +101,10 @@
   .print-mode .page-break-personal {
     page-break-before: always !important;
   }
+
+  .print-mode .skill-chip {
+    color: #FFFFFF !important; /* Force white text */
+    -webkit-print-color-adjust: exact !important; /* Ensure background prints */
+    print-color-adjust: exact !important;
+  }
 }
